@@ -1,0 +1,28 @@
+
+.data
+prompt1: .asciiz "\nEnter the integer: "
+result: .asciiz "The result is: "
+
+.text
+main:
+li $v0, 4 #print string
+la $a0, prompt1 #specify prompt
+syscall
+
+li $v0, 5 #read user entered integer
+syscall
+move $t0, $v0 #move the integer into $t0
+
+#print out result asciiz
+li $v0, 4
+la $a0, result
+syscall
+
+  
+sra $a0,$t0,3 #shift right 3 bits (/8)
+  
+li $v0, 1 #print integer after bit shift
+syscall
+
+li $v0, 10 #exit
+syscall
